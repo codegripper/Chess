@@ -3,18 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ChessMate - Play Chess Against AI</title>
+    <title>Chess</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/x-icon" href="icons8-chessboard-16.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         .chessboard {
             display: grid;
             grid-template-columns: repeat(8, 1fr);
             grid-template-rows: repeat(8, 1fr);
-            width: 100%;
+            width: 100vw;
             max-width: 500px;
+            min-width: 280px;
             aspect-ratio: 1/1;
             border: 2px solid #333;
+            margin: 0 auto;
+            box-sizing: border-box;
         }
         
         .square {
@@ -64,6 +68,7 @@
             z-index: 10;
             font-size: 2.5rem;
             line-height: 1;
+            touch-action: manipulation;
         }
         
         .check {
@@ -77,45 +82,69 @@
         @media (max-width: 640px) {
             .game-container {
                 flex-direction: column;
+                align-items: stretch;
+            }
+            .chessboard {
+                max-width: 100vw;
+                min-width: 0;
+                width: 100vw;
             }
             .controls {
                 margin-top: 20px;
                 margin-left: 0;
+                width: 100%;
+                box-sizing: border-box;
+                padding: 1rem;
+            }
+            .controls-buttons button,
+            .difficulty-btn {
+                font-size: 1.1rem;
+                padding: 0.75rem 1.5rem;
+            }
+            .game-info h2 {
+                font-size: 1.2rem;
+            }
+            #status {
+                font-size: 1.1rem;
+            }
+            #move-history {
+                font-size: 1rem;
+                max-height: 100px;
             }
         }
     </style>
 </head>
 <body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center p-4">
     <div class="max-w-4xl w-full">
-        <h1 class="text-3xl font-bold text-center mb-6 text-gray-800">ChessMate <i class="fas fa-chess"></i></h1>
+        <h1 class="text-3xl font-bold text-center mb-6 text-gray-800">CHESS-GAME<i class="fas fas fa-chess-knight"></i></h1>
         
         <div class="game-container flex flex-col md:flex-row items-center justify-center">
             <div class="chessboard shadow-lg" id="chessboard"></div>
             
             <div class="controls bg-white p-6 rounded-lg shadow-md ml-0 md:ml-8 mt-6 md:mt-0 w-full md:w-auto">
                 <div class="game-info mb-6">
-                    <h2 class="text-xl font-semibold mb-2">Game Status</h2>
+                    <h2 class="text-xl font-semibold mb-2">GAME STATS</h2>
                     <div id="status" class="text-lg font-medium mb-4">White's turn</div>
                     <div id="move-history" class="h-32 overflow-y-auto border p-2 rounded bg-gray-50 mb-4"></div>
                 </div>
                 
                 <div class="controls-buttons flex flex-wrap gap-2">
-                    <button id="new-game" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">
+                    <button id="new-game" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">
                         <i class="fas fa-plus mr-2"></i>New Game
                     </button>
                     <button id="undo-move" class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded">
                         <i class="fas fa-undo mr-2"></i>Undo
                     </button>
-                    <button id="ai-move" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">
-                        <i class="fas fa-robot mr-2"></i>AI Move
+                    <button id="ai-move" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded">
+                        <i class="fas fa-robot mr-2"></i>Computer's Move
                     </button>
-                    <button id="flip-board" class="bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded">
+                    <button id="flip-board" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">
                         <i class="fas fa-sync-alt mr-2"></i>Flip Board
                     </button>
                 </div>
                 
                 <div class="mt-6">
-                    <h3 class="font-semibold mb-2">AI Difficulty</h3>
+                    <h3 class="font-semibold mb-2">Computer Difficulty</h3>
                     <div class="flex gap-2">
                         <button data-difficulty="1" class="difficulty-btn bg-gray-200 hover:bg-gray-300 px-3 py-1 rounded">Easy</button>
                         <button data-difficulty="2" class="difficulty-btn bg-gray-300 hover:bg-gray-400 px-3 py-1 rounded active:bg-gray-500">Medium</button>
@@ -931,5 +960,16 @@
                 setupEventListeners();
             };
         </script>
-<p style="border-radius: 8px; text-align: center; font-size: 12px; color: #fff; margin-top: 16px;position: fixed; left: 8px; bottom: 8px; z-index: 10; background: rgba(0, 0, 0, 0.8); padding: 4px 8px;">Made with <img src="https://enzostvs-deepsite.hf.space/logo.svg" alt="DeepSite Logo" style="width: 16px; height: 16px; vertical-align: middle;display:inline-block;margin-right:3px;filter:brightness(0) invert(1);"><a href="https://enzostvs-deepsite.hf.space" style="color: #fff;text-decoration: underline;" target="_blank" >DeepSite</a> - <a href="https://enzostvs-deepsite.hf.space?remix=nahita/chess-game" style="color: #fff;text-decoration: underline;" target="_blank" >🧬 Remix</a></p></body>
+        <center>
+   <footer class="mt-4 pt-4 border-top">
+        <p><hr>&copy; 2025   codegripper All rights reserved.<hr></p>
+    </center>
+        <nav aria-label="Footer navigation">
+            <ul class="nav justify-content-center">
+                <li class="nav-item"><a href="#" class="nav-link" accesskey="p">Privacy Policy</a></li>
+                <li class="nav-item"><a href="#" class="nav-link" accesskey="t">Terms of Service</a></li>
+            </ul>
+        </nav>
+    </footer></center>
+</body>
 </html>
